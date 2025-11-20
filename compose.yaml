@@ -1,0 +1,7 @@
+﻿services:
+  back:
+    image: back
+    build:
+      context: .
+      dockerfile: Back/Dockerfile
+
