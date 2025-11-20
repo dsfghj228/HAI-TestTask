@@ -1,13 +1,14 @@
 using Back.Dto;
 using Back.Interfaces;
 using Back.MediatR.Commands;
+using Back.MediatR.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Back.Controllers;
 
 [ApiController]
-[Route("api/[Controller]")]
+[Route("api/patient")]
 public class PatientController : Controller
 {
     private readonly IMediator _mediator;
@@ -33,6 +34,14 @@ public class PatientController : Controller
         };
         
         var result = await _mediator.Send(command);
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllPatients()
+    {
+        var query = new GetAllPatientsQuery();
+        var result = await _mediator.Send(query);
         return Ok(result);
     }
 }

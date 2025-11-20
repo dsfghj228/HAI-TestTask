@@ -42,4 +42,9 @@ public class PatientRepository : IPatientRepository
         await _context.SaveChangesAsync();
         return patient;
     }
+
+    public async Task<List<Patient>> GetAllPatients()
+    {
+        return await _context.Patients.ToListAsync();
+    }
 }

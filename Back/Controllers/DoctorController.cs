@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back.Controllers;
 
 [ApiController]
-[Route("api/[Controller]")]
+[Route("api/doctor")]
 public class DoctorController : Controller
 {
     private readonly IMediator _mediator;
