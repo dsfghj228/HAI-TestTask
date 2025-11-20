@@ -13,9 +13,9 @@ public abstract class CustomExceptions(
     public readonly string Type = type;
     public readonly string Title = title;
 
-    public class DoctorNotFoundException(string specialization) : CustomExceptions(HttpStatusCode.NotFound,
+    public class DoctorNotFoundException(int id) : CustomExceptions(HttpStatusCode.NotFound,
         "https://tools.ietf.org/html/rfc7231#section-6.5.4",
         "Врач не найден",
-        $"Врач с такой специализацией {specialization} не найден");
+        $"Врач с таким id: {id} не найден");
    
 }

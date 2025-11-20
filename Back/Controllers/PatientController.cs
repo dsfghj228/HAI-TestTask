@@ -1,0 +1,38 @@
+using Back.Dto;
+using Back.Interfaces;
+using Back.MediatR.Commands;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Back.Controllers;
+
+[ApiController]
+[Route("api/[Controller]")]
+public class PatientController : Controller
+{
+    private readonly IMediator _mediator;
+    
+    public PatientController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreatePatient([FromBody] CreatePatientDto dto)
+    {
+        var command = new CreatePatientCommand
+        {
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            Email = dto.Email,
+            Phone = dto.Phone,
+            Address = dto.Address,
+            BirthDate = dto.BirthDate,
+            Gender = dto.Gender,
+            DoctorId = dto.DoctorId
+        };
+        
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
+}

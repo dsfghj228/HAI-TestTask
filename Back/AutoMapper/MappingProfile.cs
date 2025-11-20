@@ -10,5 +10,6 @@ public class MappingProfile : Profile
     {
         CreateMap<Disease, ReturnDiseaseDto>();
         CreateMap<Doctor, ReturnDoctorDto>();
+        CreateMap<Patient, ReturnPatientDto>();
     }
 }
