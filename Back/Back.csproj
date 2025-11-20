@@ -34,7 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <Folder Include="MediatR\Commands\" />
     </ItemGroup>
 
 </Project>

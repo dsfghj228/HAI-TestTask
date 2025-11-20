@@ -1,6 +1,8 @@
 using Back.Data;
 using Back.Exceptions;
+using Back.Interfaces;
 using Back.PipelineBehaviors;
+using Back.Repositories;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,8 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IDiseaseRepository, DiseaseRepository>();
 
 var app = builder.Build();
 
