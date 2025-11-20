@@ -1,8 +1,16 @@
 using Back.Data;
+using Back.Exceptions;
+using Back.PipelineBehaviors;
+using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(options =>
@@ -17,6 +25,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 
 var app = builder.Build();
 
+app.UseMiddleware<ValidationExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
