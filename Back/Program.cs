@@ -7,8 +7,23 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
+using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddProblemDetails(o =>
+    {
+        o.IncludeExceptionDetails = (_, _) => false;
+
+        o.Map<CustomExceptions.DoctorNotFoundException>(ex => new ProblemDetails
+        {
+            Type = ex.Type,
+            Title = ex.Title,
+            Status = (int)ex.StatusCode,
+            Detail = ex.Message
+        });
+    });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

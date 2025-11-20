@@ -1,5 +1,6 @@
 using Back.Dto;
 using Back.MediatR.Commands;
+using Back.MediatR.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,18 @@ public class DoctorController : Controller
         };
         
         var result = await _mediator.Send(command);
+        return Ok(result);
+    }
+
+    [HttpGet("{specialization}")]
+    public async Task<IActionResult> GetDoctorsBySpecialization([FromRoute] string specialization)
+    {
+        var query = new GetDoctorsBySpecializationQuery
+        {
+            Specialization = specialization
+        };
+        
+        var result = await _mediator.Send(query);
         return Ok(result);
     }
 }
