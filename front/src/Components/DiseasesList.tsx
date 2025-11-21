@@ -50,9 +50,7 @@ export default function DiseasesList() {
               <p className="text-gray-600">{disease.description}</p>
             </div>
             <button
-              onClick={() =>
-                navigate(`/update-disease?diseaseId=${disease.diseaseId}`)
-              }
+              onClick={() => navigate(`/update-disease/${disease.diseaseId}`)}
               className="mt-4 py-2 px-4 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium"
             >
               Изменить болезнь

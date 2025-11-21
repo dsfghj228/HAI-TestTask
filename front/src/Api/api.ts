@@ -1,5 +1,10 @@
 import axios from "axios";
-import { CreateDoctor, Doctor, ReturnDisease } from "./api.interfaces";
+import {
+  CreateDoctor,
+  Doctor,
+  ReturnDisease,
+  UpdateDisease,
+} from "./api.interfaces";
 
 const API = "https://localhost:7160";
 
@@ -37,6 +42,20 @@ export const getAllDiseases = async (): Promise<ReturnDisease[] | null> => {
   try {
     var response = await axios.get(`${API}/api/diseases`);
     console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const updateDisease = async (
+  id: number,
+  updateDisease: UpdateDisease
+): Promise<ReturnDisease | null> => {
+  try {
+    var response = await axios.put(`${API}/api/diseases/${id}`, updateDisease);
+    console.log(response);
     return response.data;
   } catch (err) {
     console.error(err);

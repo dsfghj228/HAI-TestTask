@@ -22,3 +22,8 @@ export interface ReturnDisease {
   name: string;
   description: string;
 }
+
+export interface UpdateDisease {
+  name: string;
+  description: string;
+}
