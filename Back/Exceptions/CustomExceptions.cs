@@ -17,5 +17,10 @@ public abstract class CustomExceptions(
         "https://tools.ietf.org/html/rfc7231#section-6.5.4",
         "Врач не найден",
         $"Врач с таким id: {id} не найден");
+    
+    public class PatientNotFoundException(int id) : CustomExceptions(HttpStatusCode.NotFound,
+        "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+        "Пациент не найден",
+        $"Пациент с таким id: {id} не найден");
    
 }

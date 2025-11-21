@@ -23,6 +23,14 @@ builder.Services.AddProblemDetails(o =>
             Status = (int)ex.StatusCode,
             Detail = ex.Message
         });
+        
+        o.Map<CustomExceptions.PatientNotFoundException>(ex => new ProblemDetails
+        {
+            Type = ex.Type,
+            Title = ex.Title,
+            Status = (int)ex.StatusCode,
+            Detail = ex.Message
+        });
     });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));

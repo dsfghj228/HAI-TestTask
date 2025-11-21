@@ -8,4 +8,5 @@ public interface IPatientRepository
 {
     Task<Patient> CreatePatient(CreatePatientCommand command);
     Task<List<Patient>> GetAllPatients();
+    Task<Patient> GetPatientById(int id);
 }

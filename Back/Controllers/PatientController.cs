@@ -44,4 +44,15 @@ public class PatientController : Controller
         var result = await _mediator.Send(query);
         return Ok(result);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetPatientById(int id)
+    {
+        var query = new GetPatientByIdQuery
+        {
+            Id = id
+        };
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
 }

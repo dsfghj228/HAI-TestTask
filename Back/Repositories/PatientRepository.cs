@@ -47,4 +47,16 @@ public class PatientRepository : IPatientRepository
     {
         return await _context.Patients.ToListAsync();
     }
+
+    public async Task<Patient> GetPatientById(int id)
+    {
+        var patient = await _context.Patients.FirstOrDefaultAsync(p => p.PatientId == id);
+
+        if (patient == null)
+        {
+            throw new CustomExceptions.PatientNotFoundException(id);
+        }
+        
+        return patient;
+    }
 }
