@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddDoctor from "./Components/AddDoctor";
+import AddPatient from "./Components/AddPatient";
 import DiseasesList from "./Components/DiseasesList";
 import DoctorList from "./Components/DoctorList";
 import NavBar from "./Components/NavBar";
@@ -21,6 +22,7 @@ function App() {
             element={<UpdateDisease />}
           />
           <Route path="/patients" element={<PatientsList />} />
+          <Route path="/patients/:patientId" element={<AddPatient />} />
         </Routes>
       </BrowserRouter>
     </div>

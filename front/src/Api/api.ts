@@ -106,10 +106,13 @@ export const addDiseaseToPatient = async (
   diseaseId: number
 ): Promise<ReturnPatient | null> => {
   try {
-    var response = await axios.post(`${API}/api/patient`, {
-      patientId: patientId,
-      diseaseId: diseaseId,
-    });
+    var response = await axios.post(
+      `${API}/api/patient/${patientId}/disease/${diseaseId}`,
+      {
+        patientId: patientId,
+        diseaseId: diseaseId,
+      }
+    );
     console.log(response.data);
     return response.data;
   } catch (err) {
