@@ -16,7 +16,7 @@ export interface ReturnPatient extends Patient {
   patientId: number;
 }
 
-export default function AddPatient() {
+export default function GetPatient() {
   const { patientId } = useParams<{ patientId: string }>();
 
   const [patient, setPatient] = useState<ReturnPatient | null>(null);

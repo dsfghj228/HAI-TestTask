@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   CreateDoctor,
   Doctor,
+  Patient,
   ReturnDisease,
   ReturnPatient,
   UpdateDisease,
@@ -89,7 +90,7 @@ export const getPatientById = async (
 };
 
 export const createPatient = async (
-  newPatient: ReturnPatient
+  newPatient: Patient
 ): Promise<ReturnPatient | null> => {
   try {
     var response = await axios.post(`${API}/api/patient`, newPatient);
