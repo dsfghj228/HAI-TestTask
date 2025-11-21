@@ -4,6 +4,7 @@ import AddDoctor from "./Components/AddDoctor";
 import DiseasesList from "./Components/DiseasesList";
 import DoctorList from "./Components/DoctorList";
 import NavBar from "./Components/NavBar";
+import PatientsList from "./Components/PatiensList";
 import UpdateDisease from "./Components/UpdateDisease";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             path="/update-disease/:diseaseId"
             element={<UpdateDisease />}
           />
+          <Route path="/patients" element={<PatientsList />} />
         </Routes>
       </BrowserRouter>
     </div>

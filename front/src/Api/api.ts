@@ -3,6 +3,7 @@ import {
   CreateDoctor,
   Doctor,
   ReturnDisease,
+  ReturnPatient,
   UpdateDisease,
 } from "./api.interfaces";
 
@@ -56,6 +57,60 @@ export const updateDisease = async (
   try {
     var response = await axios.put(`${API}/api/diseases/${id}`, updateDisease);
     console.log(response);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const getAllPatients = async (): Promise<ReturnPatient[] | null> => {
+  try {
+    var response = await axios.get(`${API}/api/patient`);
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
+export const getPatientById = async (
+  id: number
+): Promise<ReturnPatient | null> => {
+  try {
+    var response = await axios.get(`${API}/api/patient/${id}`);
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const createPatient = async (
+  newPatient: ReturnPatient
+): Promise<ReturnPatient | null> => {
+  try {
+    var response = await axios.post(`${API}/api/patient`, newPatient);
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const addDiseaseToPatient = async (
+  patientId: number,
+  diseaseId: number
+): Promise<ReturnPatient | null> => {
+  try {
+    var response = await axios.post(`${API}/api/patient`, {
+      patientId: patientId,
+      diseaseId: diseaseId,
+    });
+    console.log(response.data);
     return response.data;
   } catch (err) {
     console.error(err);

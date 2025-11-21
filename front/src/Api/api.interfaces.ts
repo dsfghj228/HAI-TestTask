@@ -27,3 +27,26 @@ export interface UpdateDisease {
   name: string;
   description: string;
 }
+
+export interface ReturnPatient {
+  patientId: number;
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  gender: string;
+  phone: string;
+  email: string;
+  address: string;
+  doctorId: number;
+}
+
+export interface Patient {
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  gender: string;
+  phone: string;
+  email: string;
+  address: string;
+  doctorId: number;
+}
