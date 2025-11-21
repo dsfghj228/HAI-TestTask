@@ -9,4 +9,5 @@ public interface IPatientRepository
     Task<Patient> CreatePatient(CreatePatientCommand command);
     Task<List<Patient>> GetAllPatients();
     Task<Patient> GetPatientById(int id);
+    Task<Patient> AddDiseaseToPatient(int patientId, int diseaseId);
 }

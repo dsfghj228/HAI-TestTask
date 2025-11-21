@@ -1,5 +1,4 @@
 using Back.Dto;
-using Back.Interfaces;
 using Back.MediatR.Commands;
 using Back.MediatR.Queries;
 using MediatR;
@@ -53,6 +52,18 @@ public class PatientController : Controller
             Id = id
         };
         var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpPost("{patientId}/disease/{diseaseId}")]
+    public async Task<IActionResult> AddDisease([FromRoute] int patientId, [FromRoute] int diseaseId)
+    {
+        var command = new AddDiseaseToPatientCommand
+        {
+            PatientId = patientId,
+            DiseaseId = diseaseId
+        };
+        var result = await _mediator.Send(command);
         return Ok(result);
     }
 }

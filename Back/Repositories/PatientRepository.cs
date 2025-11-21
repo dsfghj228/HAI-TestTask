@@ -59,4 +59,33 @@ public class PatientRepository : IPatientRepository
         
         return patient;
     }
+
+    public async Task<Patient> AddDiseaseToPatient(int patientId, int diseaseId)
+    {
+        var patient = await _context.Patients
+            .Include(p => p.Diseases)
+            .FirstOrDefaultAsync(p => p.PatientId == patientId);
+
+        if (patient == null)
+        {
+            throw new CustomExceptions.PatientNotFoundException(patientId);
+        }
+        
+        var disease = await _context.Diseases
+            .FirstOrDefaultAsync(d => d.DiseaseId == diseaseId);
+
+        if (disease == null)
+        {
+            throw new CustomExceptions.DiseaseNotFoundException(diseaseId);
+        }
+        
+        if (patient.Diseases.Any(d => d.DiseaseId == diseaseId))
+            return patient;
+
+        patient.Diseases.Add(disease);
+
+        await _context.SaveChangesAsync();
+        return patient;
+    }
+
 }
