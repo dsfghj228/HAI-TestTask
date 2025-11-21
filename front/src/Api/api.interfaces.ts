@@ -16,3 +16,9 @@ export interface CreateDoctor {
   email: string;
   experienceYears: number;
 }
+
+export interface ReturnDisease {
+  diseaseId: number;
+  name: string;
+  description: string;
+}

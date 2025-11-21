@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CreateDoctor, Doctor } from "./api.interfaces";
+import { CreateDoctor, Doctor, ReturnDisease } from "./api.interfaces";
 
 const API = "https://localhost:7160";
 
@@ -26,6 +26,17 @@ export const createDoctor = async (
     var response = await axios.post(`${API}/create`, doctor);
     console.log("Успешное создание доктора: ", response.data);
 
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const getAllDiseases = async (): Promise<ReturnDisease[] | null> => {
+  try {
+    var response = await axios.get(`${API}/api/diseases`);
+    console.log(response.data);
     return response.data;
   } catch (err) {
     console.error(err);
