@@ -1,3 +1,4 @@
+using System.Reflection;
 using Back.Data;
 using Back.Exceptions;
 using Back.Interfaces;
@@ -49,6 +50,10 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo {Title = "HAI-Back", Version = "v1"});
+    
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
 });
 
 
