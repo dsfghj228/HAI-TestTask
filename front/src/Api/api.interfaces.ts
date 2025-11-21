@@ -7,3 +7,12 @@ export interface Doctor {
   email: string;
   experienceYears: number;
 }
+
+export interface CreateDoctor {
+  firstName: string;
+  lastName: string;
+  specialization: string;
+  phone: string;
+  email: string;
+  experienceYears: number;
+}
